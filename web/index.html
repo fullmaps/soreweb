@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../design/styleindex.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>SoreWeb</title>
+</head>
+<body>
+    <audio id="miAudio" src="../resources/deltarunelobbyost.mp3" loop></audio>
+    <div class="container">
+        <h1>Bienvenid@s a SoreWeb</h1>
+        <p>Una pagina especial para mostrar mis jueguitos al mundo, saber un poco de mi y pasarnosla bien :3!</p>
+
+        <div id="reproducirSonido" class="button"><p>Visitar pagina</p></div>
+        <audio id="sonidoBoton" src="../resources/videoplayback.mp3"></audio>
+    </div>
+
+    <img src="../resources/ch3-spoiler-i-ripped-all-of-this-guys-sprites-and-made-some-v0-3ffihj5sfb5f1.gif" alt="Un personaje caminando" width="300" height="auto"
+    title="Haz clic para ver más">
+
+</body>
+</html>
+
+<script>
+    // Audio de fondo (se reproduce una vez al hacer clic en cualquier parte)
+    document.addEventListener("click", () => {
+        const audioFondo = document.getElementById("miAudio");
+        audioFondo.play();
+    }, { once: true }); // Solo en el primer clic
+
+    // Sonido y redirección del botón "Visitar pagina"
+    const botonVisitar = document.getElementById('reproducirSonido');
+    const audioBoton = document.getElementById('sonidoBoton');
+
+    botonVisitar.addEventListener('click', () => {
+        // 1. Reproducir el sonido del botón
+        audioBoton.currentTime = 0; // Reinicia el audio al principio
+        audioBoton.play();          // Reproduce el audio
+ 
+
+        const tiempoEsperaMs = 2000; 
+
+        setTimeout(() => {
+            window.location.href = 'otra_pagina.html'; 
+        }, tiempoEsperaMs);
+    });
+</script>

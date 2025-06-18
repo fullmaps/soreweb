@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'deltarune'; 
+    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'deltarune';
+    background-color: #000000;
+
+}
+
+.container {
+    font-family: 'deltarune';
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.container .button {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 70px;
+    background-color: #00b105; 
+    border-radius: 5px;
+    font-size: 20px;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+}
+
+.container .button:hover {
+    background-color: #000000;
+    transition: all 3s ease-in-out;
+}
+
+.button p {
+    cursor: pointer;
+    margin: 0;
+    font-size: 20px;
+    color: #ffffff;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.button p:hover {
+    color: yellow;
+    transition: all 3s ease-in-out;
+}

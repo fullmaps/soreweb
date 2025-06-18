@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../design/styleindex.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
     <title>SoreWeb</title>
 </head>
 <body>
@@ -16,10 +16,19 @@
         <div id="reproducirSonido" class="button"><p>Visitar pagina</p></div>
         <audio id="sonidoBoton" src="../resources/videoplayback.mp3"></audio>
     </div>
+    
 
-    <img src="../resources/ch3-spoiler-i-ripped-all-of-this-guys-sprites-and-made-some-v0-3ffihj5sfb5f1.gif" alt="Un personaje caminando" width="300" height="auto"
-    title="Haz clic para ver más">
-    <img src="../resources/SAVE_Point_overworld.gif"  alt="respawn" width="40" height="auto">
+    <!-- Boton de respawn -->
+     <div class="respawnButton">
+            <div class="respawnAction">
+                <img src="../resources/SAVE_Point_overworld.gif"  alt="respawn" width="40" height="40px">
+            </div>
+     </div>
+
+     <!-- Boton de stalwarker -->
+
+     <div id="mostrarFoto" class="stalwalkerButton">
+     </div>
 
 </body>
 </html>
@@ -44,4 +53,29 @@
             window.location.href = 'otra_pagina.html'; 
         }, tiempoEsperaMs);
     });
+
+
+   document.getElementById("mostrarFoto").addEventListener("click", function () {
+    const img = document.createElement("img");
+    img.src = "../resources/starwalker.gif"; 
+    img.alt = "Imagen mostrada";
+    img.style.width = "100px";
+    img.style.height = "auto";
+    img.style.cursor = "pointer";
+
+    document.body.appendChild(img);
+
+
+    img.addEventListener("click", function () {
+        const cuadroTexto = document.createElement("img");
+        cuadroTexto.src = "../resources/stalwalkerCuadrodeTexto.png";
+        cuadroTexto.style.marginTop = "5px";
+        cuadroTexto.style.width = "500px";
+        cuadroTexto.style.height = "200px";
+        // Solo agregamos una vez si no existe
+        if (!document.body.contains(cuadroTexto)) {
+            document.body.appendChild(cuadroTexto);
+        }
+    });
+});
 </script>

@@ -8,7 +8,6 @@
     <title>SoreWeb</title>
 </head>
 <body>
-    hola
     <audio id="miAudio" src="../resources/deltarunelobbyost.mp3" loop></audio>
     <div class="container">
         <h1>Bienvenid@s a SoreWeb</h1>
@@ -20,25 +19,23 @@
 
     <img src="../resources/ch3-spoiler-i-ripped-all-of-this-guys-sprites-and-made-some-v0-3ffihj5sfb5f1.gif" alt="Un personaje caminando" width="300" height="auto"
     title="Haz clic para ver más">
+    <img src="../resources/SAVE_Point_overworld.gif"  alt="respawn" width="40" height="auto">
 
 </body>
 </html>
 
 <script>
-    // Audio de fondo (se reproduce una vez al hacer clic en cualquier parte)
     document.addEventListener("click", () => {
         const audioFondo = document.getElementById("miAudio");
         audioFondo.play();
-    }, { once: true }); // Solo en el primer clic
-
-    // Sonido y redirección del botón "Visitar pagina"
+    }, { once: true });
+    
     const botonVisitar = document.getElementById('reproducirSonido');
     const audioBoton = document.getElementById('sonidoBoton');
 
     botonVisitar.addEventListener('click', () => {
-        // 1. Reproducir el sonido del botón
-        audioBoton.currentTime = 0; // Reinicia el audio al principio
-        audioBoton.play();          // Reproduce el audio
+        audioBoton.currentTime = 0; 
+        audioBoton.play();         
  
 
         const tiempoEsperaMs = 2000; 

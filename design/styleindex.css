@@ -68,12 +68,12 @@ body {
 .respawnButton {
     position: absolute;
     top: 400px;
-    left: 670px;
+    left: 657px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 162px;
+    width: 220px;
+    height: 140px;
     background-color: #98d5e5;
     border-radius: 50%;
 }
@@ -98,3 +98,11 @@ body {
     cursor: pointer;
 }
 
+.container .speakerLogo{
+    position: absolute;
+    top: 15px;
+    left: 97%;
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+}

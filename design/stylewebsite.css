@@ -1,0 +1,86 @@
+
+@font-face {
+    font-family: 'deltarune'; 
+    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'deltarune', sans-serif;
+    color: #ffffff;
+    position: relative;
+    background-color: #000000;
+}
+/* Estilo del nav */
+.navigation {
+    background-color: #1c1c1c;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Lista horizontal */
+.navigation ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Estilo de los enlaces */
+.navigation a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Línea debajo al hacer hover */
+.navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background-color: #00b105;
+    transition: width 0.3s ease;
+}
+
+.navigation a:hover::after {
+    width: 100%;
+}
+
+.grandcontainer .container {
+    background-image: url('../resources/key-art.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    image-rendering: pixelated;  
+    background-size: contain;
+    height: 100vh;
+}
+
+.grandcontainer footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    background-color: #0053d3;
+    color: #ffffff;
+    font-size: 14px;
+    opacity: 70%;
+}
+
+.grandcontainer footer a{
+    text-decoration: none;
+    color: #dd0000;
+}

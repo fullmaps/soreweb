@@ -15,13 +15,13 @@ document.getElementById('reproducirSonido').addEventListener('click', () => {
     sonidoBoton.currentTime = 0;
     sonidoBoton.play();
     setTimeout(() => {
-        window.location.href = 'otra_pagina.html';
+        window.location.href = 'website.html';
     }, 2000);
 });
 
 // Opciones del menú con URLs
 const options = [
-    { label: "Pagina WEB", url: "index.html" },
+    { label: "Pagina WEB", url: "../web/website.html" },
     { label: "Twitch", url: "https://twitch.tv/sorenine_" },
     { label: "Discord", url: "https://discord.gg/https://discord.gg/FpEQD44kyC" },
     { label: "Volver", url: null }
@@ -103,6 +103,11 @@ document.getElementById("respawnMenu").addEventListener("click", function () {
 // Mostrar imagen y texto de Starwalker al hacer clic
 document.getElementById("mostrarFoto").addEventListener("click", function () {
     const img = document.createElement("img");
+
+    if(img => 20)
+    {
+        alert("Oye tampoco te pases")
+    }
     img.src = "../resources/starwalker.gif";
     img.alt = "Imagen mostrada";
     img.style.width = "100px";
@@ -167,3 +172,4 @@ document.getElementById("mutearMusica").addEventListener("click", function () {
         this.src = "../resources/muted.svg";
     }
 });
+

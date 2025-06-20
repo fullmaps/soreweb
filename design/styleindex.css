@@ -107,34 +107,42 @@ body {
     cursor: pointer;
 }
 
-        .save-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 5000;
-        }
-        .save-image-container {
-            position: relative;
-        }
-        .save-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .save-image-text {
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            text-align: center;
-            white-space: pre-line;
-        }
+.save-overlay {
+    position: fixed;
+     top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+}
+.save-image-container {
+    position: relative;
+}
+.save-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.save-image-text {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    text-align: center;
+    white-space: pre-line;
+}
+
+.textRespawn{
+    position: absolute;
+    left: 37%;
+    top: 550px;
+    color: #ffffff;
+    text-align: center;
+}

@@ -6,6 +6,39 @@
     <link rel="stylesheet" href="../design/styleindex.css">
     <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
     <title>SoreWeb</title>
+    <style>
+        .save-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+        }
+        .save-image-container {
+            position: relative;
+        }
+        .save-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .save-image-text {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            text-align: center;
+            white-space: pre-line;
+        }
+    </style>
 </head>
 <body>
     <audio id="miAudio" src="../resources/deltarunelobbyost.mp3" loop></audio>
@@ -17,156 +50,152 @@
         <div id="reproducirSonido" class="button"><p>Visitar pagina</p></div>
         <audio id="sonidoBoton" src="../resources/videoplayback.mp3"></audio>
     </div>
-    
 
-    <!-- Boton de respawn -->
-     <div class="respawnButton">
-            <div class="respawnAction">
-                <img id="respawnMenu" src="../resources/SAVE_Point_overworld.gif"  alt="respawn" width="40" height="40px">
-            </div>
-     </div>
+    <div class="respawnButton">
+        <div class="respawnAction">
+            <img id="respawnMenu" src="../resources/SAVE_Point_overworld.gif" alt="respawn" width="40" height="40">
+        </div>
+    </div>
 
-     <!-- Boton de stalwarker -->
+    <div id="mostrarFoto" class="stalwalkerButton"></div>
 
-     <div id="mostrarFoto" class="stalwalkerButton">
-     </div>
+    <script>
+        document.addEventListener("click", () => {
+            const audioFondo = document.getElementById("miAudio");
+            audioFondo.play();
+        }, { once: true });
 
-</body>
-</html>
+        document.getElementById('reproducirSonido').addEventListener('click', () => {
+            const audioBoton = document.getElementById('sonidoBoton');
+            audioBoton.currentTime = 0;
+            audioBoton.play();
+            setTimeout(() => {
+                window.location.href = 'otra_pagina.html';
+            }, 2000);
+        });
 
-<script>
-    // Reproducir música de fondo al primer clic
-    document.addEventListener("click", () => {
-        const audioFondo = document.getElementById("miAudio");
-        audioFondo.play();
-    }, { once: true });
+        const options = ["Save", "Return", "Storage", "Recruits"];
+        let selectedIndex = 0;
 
-    // Reproducir sonido del botón y redirigir
-    const botonVisitar = document.getElementById('reproducirSonido');
-    const audioBoton = document.getElementById('sonidoBoton');
+        function updateMenuText() {
+            return `SORE   LV 99   2:00:48\nQueen's Mansion - Rooftop\n\n` +
+                options.map((option, index) => {
+                    return (index === selectedIndex ? `💚 ${option}` : `  ${option}`);
+                }).join("\n");
+        }
 
-    botonVisitar.addEventListener('click', () => {
-        audioBoton.currentTime = 0;
-        audioBoton.play();
-
-        const tiempoEsperaMs = 2000;
-
-        setTimeout(() => {
-            window.location.href = 'otra_pagina.html';
-        }, tiempoEsperaMs);
-    });
-
-    // Mostrar imagen y cuadro de texto al hacer clic en el botón de Starwalker
-    document.getElementById("mostrarFoto").addEventListener("click", function () {
-        const img = document.createElement("img");
-        img.src = "../resources/starwalker.gif";
-        img.alt = "Imagen mostrada";
-        img.style.width = "100px";
-        img.style.height = "auto";
-        img.style.cursor = "pointer";
-
-        document.body.appendChild(img);
-
-        img.addEventListener("click", function () {
-
-            const cuadroExistente = document.getElementById("cuadroStalwalker");
-            
-            if (cuadroExistente) {
-                cuadroExistente.remove();
-                return; 
+        document.getElementById("respawnMenu").addEventListener("click", function () {
+            const existing = document.getElementById("saveOverlay");
+            if (existing) {
+                existing.remove();
+                return;
             }
 
-            const contenedor = document.createElement("div");
-            // Estilos para el contenedor del cuadro de texto
-            contenedor.id = "cuadroStalwalker";
-            contenedor.style.position = "fixed";
-            contenedor.style.bottom = "20px";
-            contenedor.style.left = "50%";
-            contenedor.style.transform = "translateX(-50%)";
-            contenedor.style.width = "500px";
-            contenedor.style.height = "200px";
-            contenedor.style.zIndex = "1000";
-            contenedor.style.pointerEvents = "none";
-            contenedor.style.overflow = "hidden";
+            const overlay = document.createElement("div");
+            overlay.id = "saveOverlay";
+            overlay.className = "save-overlay";
 
-            // Imagen de fondo del cuadro de texto
-            const fondo = document.createElement("img");
-            fondo.src = "../resources/stalwalkerCuadrodeTexto.png";
-            fondo.style.width = "100%";
-            fondo.style.height = "100%";
-            fondo.style.position = "absolute";
-            fondo.style.left = "0";
-            fondo.style.top = "0";
+            const container = document.createElement("div");
+            container.className = "save-image-container";
 
-            // Texto encima del cuadro
-            const texto = document.createElement("p");
-            texto.innerHTML = `I'm the original ㅤㅤ    <span style="color: #ffff00;">  Starwalker</span>`;
-            texto.style.color = "white";
-            texto.style.fontSize = "20px";
-            texto.style.position = "absolute";
-            texto.style.zIndex = "1001";
-            texto.style.top = "10px";
-            texto.style.left = "50%";
-            texto.style.transform = "translateX(-50%)";
-            texto.style.textAlign = "center";
-            texto.style.width = "100%";
-            texto.style.margin = "0";
-            texto.style.padding = "20px";
+            const imagen = document.createElement("img");
+            imagen.src = "../resources/itemtexo.png";
+            imagen.alt = "Save Menu";
 
-            // Agregar fondo y texto al contenedor
-            contenedor.appendChild(fondo);
-            contenedor.appendChild(texto);
-            document.body.appendChild(contenedor);
+            const texto = document.createElement("div");
+            texto.className = "save-image-text";
+            texto.innerHTML = updateMenuText();
+
+            container.appendChild(imagen);
+            container.appendChild(texto);
+            overlay.appendChild(container);
+            document.body.appendChild(overlay);
+
+            function keyHandler(e) {
+                if (e.key === 'w' || e.key === 'ArrowUp') {
+                    selectedIndex = (selectedIndex - 1 + options.length) % options.length;
+                    texto.innerHTML = updateMenuText();
+                } else if (e.key === 's' || e.key === 'ArrowDown') {
+                    selectedIndex = (selectedIndex + 1) % options.length;
+                    texto.innerHTML = updateMenuText();
+                } else if (e.key === 'Enter') {
+                    alert(`Seleccionaste: ${options[selectedIndex]}`);
+                    overlay.remove();
+                    document.removeEventListener('keydown', keyHandler);
+                } else if (e.key === 'Escape') {
+                    overlay.remove();
+                    document.removeEventListener('keydown', keyHandler);
+                }
+            }
+
+            document.addEventListener('keydown', keyHandler);
         });
-    });
 
-    document.getElementById("mutearMusica").addEventListener("click", function() {
-        const audioFondo = document.getElementById("miAudio");
-        if (audioFondo.paused) {
-            audioFondo.play();
-            this.src = "../resources/speaker.svg"; // Cambiar a icono de sonido
-        } else {
-            audioFondo.pause();
-            this.src = "../resources/muted.svg"; // Cambiar a icono de silencio
-        }
-    });
+        document.getElementById("mostrarFoto").addEventListener("click", function () {
+            const img = document.createElement("img");
+            img.src = "../resources/starwalker.gif";
+            img.alt = "Imagen mostrada";
+            img.style.width = "100px";
+            img.style.height = "auto";
+            img.style.cursor = "pointer";
+            document.body.appendChild(img);
 
+            img.addEventListener("click", function () {
+                const cuadroExistente = document.getElementById("cuadroStalwalker");
+                if (cuadroExistente) {
+                    cuadroExistente.remove();
+                    return;
+                }
+                const contenedor = document.createElement("div");
+                contenedor.id = "cuadroStalwalker";
+                contenedor.style.position = "fixed";
+                contenedor.style.bottom = "20px";
+                contenedor.style.left = "50%";
+                contenedor.style.transform = "translateX(-50%)";
+                contenedor.style.width = "500px";
+                contenedor.style.height = "200px";
+                contenedor.style.zIndex = "1000";
+                contenedor.style.pointerEvents = "none";
+                contenedor.style.overflow = "hidden";
 
-     document.getElementById("respawnMenu").addEventListener("click", function () {
-        const contenedor = document.createElement("div");
-        contenedor.style.position = "fixed";
-        contenedor.style.top = "0";
-        contenedor.style.left = "0";
-        contenedor.style.width = "100vw";
-        contenedor.style.height = "100vh";
-        contenedor.style.zIndex = "1000";
-        contenedor.style.display = "flex";
-        contenedor.style.alignItems = "center";
-        contenedor.style.justifyContent = "center";
+                const fondo = document.createElement("img");
+                fondo.src = "../resources/stalwalkerCuadrodeTexto.png";
+                fondo.style.width = "100%";
+                fondo.style.height = "100%";
+                fondo.style.position = "absolute";
+                fondo.style.left = "0";
+                fondo.style.top = "0";
 
-        const img = document.createElement("img");
-        img.src = "../resources/itemtexo.png";
-        img.style.maxWidth = "90%";
-        img.style.maxHeight = "90%";
+                const texto = document.createElement("p");
+                texto.innerHTML = `I'm the original ㅤㅤ <span style="color: #ffff00;">Starwalker</span>`;
+                texto.style.color = "white";
+                texto.style.fontSize = "20px";
+                texto.style.position = "absolute";
+                texto.style.zIndex = "1001";
+                texto.style.top = "10px";
+                texto.style.left = "50%";
+                texto.style.transform = "translateX(-50%)";
+                texto.style.textAlign = "center";
+                texto.style.width = "100%";
+                texto.style.margin = "0";
+                texto.style.padding = "20px";
 
-        contenedor.appendChild(img);
-        document.body.appendChild(contenedor);
-
-        // Añadir texto al centro de la imagen
-        const texto = document.createElement("p");
-        texto.innerHTML = "SORE";
-        texto.style.position = "relative";
-        texto.style.color = "white";
-        texto.style.fontSize = "24px";
-        texto.style.textAlign = "center";
-        texto.style.top = "50%";
-        texto.style.transform = "translateY(-50%)";
-        texto.style.zIndex = "5001";
-
-
-        // Cerrar el menú al hacer clic
-        contenedor.addEventListener("click", () => {
-            contenedor.remove();
+                contenedor.appendChild(fondo);
+                contenedor.appendChild(texto);
+                document.body.appendChild(contenedor);
+            });
         });
-    });
-</script>
+
+        document.getElementById("mutearMusica").addEventListener("click", function () {
+            const audioFondo = document.getElementById("miAudio");
+            if (audioFondo.paused) {
+                audioFondo.play();
+                this.src = "../resources/speaker.svg";
+            } else {
+                audioFondo.pause();
+                this.src = "../resources/muted.svg";
+            }
+        });
+    </script>
+</body>
+</html>

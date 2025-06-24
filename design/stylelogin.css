@@ -1,0 +1,46 @@
+
+@font-face {
+    font-family: 'deltarune'; 
+    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'deltarune', sans-serif;
+    position: relative;
+    background-color: #000000;
+    background-image: url('../resources/malditagatasore.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    margin-top: 250px;
+    margin-left: 570px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #ffffff;
+    height: 250px;
+    width: 700px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}   
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

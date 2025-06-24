@@ -104,9 +104,11 @@ document.getElementById("respawnMenu").addEventListener("click", function () {
 document.getElementById("mostrarFoto").addEventListener("click", function () {
     const img = document.createElement("img");
 
-    if(img => 20)
-    {
-        alert("Oye tampoco te pases")
+    const cantidad = document.querySelectorAll("img[src='../resources/starwalker.gif']").length;
+
+    if (cantidad >= 20) {
+        alert("Oye tampoco te pases");
+        return;
     }
     img.src = "../resources/starwalker.gif";
     img.alt = "Imagen mostrada";

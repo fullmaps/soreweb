@@ -13,6 +13,7 @@
 <body>
     <audio id="miAudio" src="../resources/deltarunelobbyost.mp3" loop></audio>
     <div class="container">
+        <a class="loginlink" href="login.php">Log in</a>
         <img id="mutearMusica" class="speakerLogo" src="../resources/speaker.svg" alt="speak logo">
         <h1>Bienvenid@s a SoreWeb</h1>
         <p>Una pagina especial para mostrar mis jueguitos al mundo, saber un poco de mi y pasarnosla bien :3!</p>

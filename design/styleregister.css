@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'deltarune'; 
-    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype'); 
-    font-weight: normal; 
-    font-style: normal; 
+    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
@@ -13,23 +13,23 @@
 
 body {
     font-family: 'deltarune', sans-serif;
-    background-color: #000000;
+    background-color: black;
     background-image: url('../resources/malditagatasore.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
-.login-container {
+.register-container {
     width: 700px;
     padding: 40px;
     border: 4px solid white;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.85);
     box-shadow: 0 0 20px white;
     text-align: center;
     backdrop-filter: blur(5px);
@@ -87,17 +87,17 @@ button:hover {
     box-shadow: 0 0 12px #ffffff;
 }
 
-.register-link {
+.login-link {
     margin-top: 20px;
     font-size: 16px;
 }
 
-.register-link a {
+.login-link a {
     color: #00ffff;
     text-decoration: none;
 }
 
-.register-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
     color: #ffffff;
 }

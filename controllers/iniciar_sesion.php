@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_start();
         $_SESSION['usuario_id'] = $usuario->id;
         $_SESSION['usuario_nombre'] = $usuario->nombre;
-        header("Location: ../web/index.php");
+        header("Location: ../web/website.php");
         exit;
     } else {
         echo "Contraseña incorrecta.";

@@ -160,3 +160,79 @@ body {
     color: yellow;
 }
 
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 2rem;
+    }
+
+    .container .button {
+        width: 200px;
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    .button p {
+        font-size: 1rem;
+    }
+
+    .respawnButton {
+        top: 500px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 180px;
+        height: 120px;
+    }
+
+    .respawnButton img {
+        width: 40px;
+    }
+
+    .textRespawn {
+        top: 650px;
+        font-size: 0.9rem;
+    }
+
+    .container .speakerLogo,
+    .container .loginlink {
+        left: auto;
+        right: 20px;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .container h1 {
+        font-size: 1.5rem;
+    }
+
+    .container p {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    .container .button {
+        width: 160px;
+        height: 50px;
+    }
+
+    .button p {
+        font-size: 0.9rem;
+    }
+
+    .respawnButton {
+        top: 550px;
+        width: 150px;
+        height: 100px;
+    }
+
+    .textRespawn {
+        top: 670px;
+        font-size: 0.8rem;
+    }
+
+    .stalwalkerButton {
+        width: 50px;
+        height: 25px;
+    }
+}

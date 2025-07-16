@@ -24,18 +24,18 @@ class Plantilla {
         <body>
         <nav class="navigation">
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="../games/index.html">Juegos</a></li>
-                <li><a href="../games/index.html">Animes</a></li>
-                <li><a href="../aboutme/index.html">Sobre mí</a></li>
-                <li><a href="../contact/index.html">Contacto</a></li>
+                <li><a href="../web/index.php">Inicio</a></li>
+                <li><a href="../web/games.php">Juegos</a></li>
+                <li><a href="../games/index.php">Animes</a></li>
+                <li><a href="../aboutme/test.php">Sobre mí</a></li>
+                <li><a href="../contact/index.php">Contacto</a></li>
+            </ul>
+        </nav>
         <?php
     }
 
     public function __destruct() {
         ?>
-            </ul>
-        </nav>
         <footer>
             <p>&copy; 2023 SoreWeb. Todos los derechos reservados.</p>
             <p>Desarrollado por <a href="https://github.com/fullmaps" target="_blank">rin_nightVT</a></p>

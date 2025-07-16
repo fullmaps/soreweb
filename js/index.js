@@ -5,11 +5,15 @@ const sonidoSeleccion = document.getElementById("sonidoSeleccion");
 const sonidoSave = document.getElementById("sonidoSave");
 const sonidoRespawn = document.getElementById("sonidoRespawn");
 
-// Reproducir música de fondo al primer click
-document.addEventListener("click", () => {
-    audioFondo.play();
-}, { once: true });
-
+// Reproducir música de fondo al cargar la página
+window.addEventListener("load", function () {
+    audioFondo.volume = 0.5; // Ajustar volumen de la música de fondo
+    audioFondo.loop = true; // Repetir música de fondo
+    audioFondo.play().catch(error => {
+        console.error("Error al reproducir la música de fondo:", error);
+        alert("No se pudo reproducir la música de fondo. Por favor, revisa la consola para más detalles.");
+    });
+}); 
 // Reproducir sonido y redirigir tras 2 segundos
 document.getElementById('reproducirSonido').addEventListener('click', () => {
     sonidoBoton.currentTime = 0;
@@ -21,7 +25,7 @@ document.getElementById('reproducirSonido').addEventListener('click', () => {
 
 // Opciones del menú con URLs
 const options = [
-    { label: "Pagina WEB", url: "../web/website.html" },
+    { label: "Pagina WEB", url: "../web/website.php" },
     { label: "Twitch", url: "https://twitch.tv/sorenine_" },
     { label: "Discord", url: "https://discord.gg/https://discord.gg/FpEQD44kyC" },
     { label: "Volver", url: null }

@@ -10,9 +10,9 @@
 <body>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
-        <form action="../library/login.php" method="post">
+        <form action="../controllers/iniciar_sesion.php" method="post">
             <label for="username">Usuario:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="nombre" name="nombre" required>
             
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>

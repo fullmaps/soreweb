@@ -1,18 +1,33 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* mínimo 100% del alto visible */
+}
+
+.container {
+    text-align: center;
+}
+
+.container h2 {
+    color: green;
+}
 
 /* Estilos del grid de juegos */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(6, 1fr); 
     gap: 20px;
     padding: 40px 20px;
     justify-items: center;
-    background-color: #000;
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: #000000;
 }
 
-/* Caja de cada juego */
 .game-item {
     background-color: green;
     border-radius: 8px;

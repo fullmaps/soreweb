@@ -1,31 +1,37 @@
-
 @font-face {
-    font-family: 'deltarune'; 
-    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype'); 
-    font-weight: normal; 
-    font-style: normal; 
+    font-family: 'deltarune';
+    src: url('../fonts/undertale-deltarune-text-font-extended.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
-/* Reset básico */
+
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+html, body {
+    height: 100%;
     font-family: 'deltarune', sans-serif;
-    color: #ffffff;
-    position: relative;
-    background-color: #000000;
-}
-/* Estilo del nav */
-.navigation {
-    background-color: #1c1c1c;
-    padding: 15px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    background-color: #000; /* Estilo oscuro retro */
+    color: #fff;
 }
 
-/* Lista horizontal */
+main {
+    flex: 1;
+}
+
+.navigation {
+    background-color: #000;
+    border-bottom: 2px solid #00ff00; 
+    padding: 15px 0;
+    font-family: 'deltarune';
+}
+
 .navigation ul {
     list-style: none;
     display: flex;
@@ -33,16 +39,14 @@ body {
     gap: 40px;
 }
 
-/* Estilo de los enlaces */
 .navigation a {
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
     position: relative;
-    padding: 5px 0;
+    text-transform: uppercase;
 }
 
-/* Línea debajo al hacer hover */
 .navigation a::after {
     content: "";
     position: absolute;
@@ -50,7 +54,7 @@ body {
     bottom: -4px;
     width: 0%;
     height: 2px;
-    background-color: #00b105;
+    background-color: #00ff00; /* Rosa neon */
     transition: width 0.3s ease;
 }
 
@@ -58,29 +62,30 @@ body {
     width: 100%;
 }
 
-.grandcontainer .container {
+/* Contenedor con fondo */
+.containerwebsite {
     background-image: url('../resources/key-art.gif');
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
-    image-rendering: pixelated;  
     background-size: contain;
-    height: 100vh;
+    image-rendering: pixelated;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.grandcontainer footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+/* Footer fijo abajo sin solaparse */
+footer {
+    background-color: #111;
+    color: #fff;
     text-align: center;
-    padding: 5px;
-    background-color: #0053d3;
-    color: #ffffff;
+    padding: 10px;
+    border-top: 2px solid #00ff00;
     font-size: 14px;
-    opacity: 70%;
 }
 
-.grandcontainer footer a{
+footer a {
+    color: #00ff00;
     text-decoration: none;
-    color: #dd0000;
 }

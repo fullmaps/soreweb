@@ -1,6 +1,6 @@
 <?php
 
-include ('../library/config.php');
+include ('config.php');
 class conexion {
     public $conexion;
     private static $instancia;

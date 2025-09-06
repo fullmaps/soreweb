@@ -20,26 +20,24 @@ if (!isset($_SESSION['usuario_id'])) {
 <body>
     <nav class="navigation">
         <ul>
-            <li><a href="index.php">Inicio</a></li>
+            <li><a href="website.php">Inicio</a></li>
             <li><a href="games.php">Juegos</a></li>
             <li><a href="animes.php">Animes</a></li>
             <li><a href="test.php">Sobre mí</a></li>
             <li><a href="../contact/">Contacto</a></li>
         </ul>
     </nav>
-    <div class="grandcontainer">
-         <div class="container">
-            
+
+    <main class="grandcontainer">
+        <div class="containerwebsite">
+            <!-- Aquí puedes meter tu contenido -->
         </div>
-         <footer>
-                <p>&copy; 2023 SoreWeb. Todos los derechos reservados.</p>
-                <p>Desarrollado por <a href="github.com/fullmaps">rin_nightVT</a></p>
-        </footer>
-    </div>
-   
+    </main>
 
-
-
-    
+    <footer>
+        <p>&copy; 2023 SoreWeb. Todos los derechos reservados.</p>
+        <p>Desarrollado por <a href="github.com/fullmaps">rin_nightVT</a></p>
+    </footer>
 </body>
+
 </html>

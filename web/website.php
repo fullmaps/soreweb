@@ -23,8 +23,9 @@ if (!isset($_SESSION['usuario_id'])) {
             <li><a href="website.php">Inicio</a></li>
             <li><a href="games.php">Juegos</a></li>
             <li><a href="animes.php">Animes</a></li>
-            <li><a href="test.php">Sobre mí</a></li>
+            <li><a href="about.php">Sobre mí</a></li>
             <li><a href="../contact/">Contacto</a></li>
+            <li><a href="../controllers/logout.php">Cerrar sesión</a></li>
         </ul>
     </nav>
 

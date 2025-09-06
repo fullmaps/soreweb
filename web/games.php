@@ -9,15 +9,14 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-// Guardar el id de sesión en una variable
 $usuarioid = $_SESSION['usuario_id'];
 
-// Obtener el rol del usuario actual
 $sql = "SELECT rol FROM usuarios WHERE id = :usuarioid";
 $resultado = conexion::consulta($sql, [':usuarioid' => $usuarioid]);
 
-// Como la consulta devuelve un array, tomamos el primer resultado
 $rol = $resultado[0]->rol ?? 'U';  
+
+$juegos = conexion::consulta("SELECT id, nombre, descripcion, imagen FROM juegos ORDER BY creado_en DESC");
 ?>
 <head>
     <meta charset="UTF-8">
@@ -38,69 +37,18 @@ $rol = $resultado[0]->rol ?? 'U';
     <?php if ($rol === 'A'): ?>
         <a class="btn btn-primary" href="games_admin.php">Registrar juego</a>
     <?php endif; ?>
+    
     <div class="grid">
-        <div class="game-item">
-            <a href="https://soreweb.com/web/undertale.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-        <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-        <div class="game-item">
-            <a href="https://soreweb.com/web/sans.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-         <div class="game-item">
-            <a href="https://soreweb.com/web/sans.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-         <div class="game-item">
-            <a href="https://soreweb.com/web/sans.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-           <div class="game-item">
-            <a href="https://soreweb.com/web/deltarune.php">
-                <img src="../resources/jinxy.jpg" alt="Undertale">
-            </a>
-        </div>
-        
+        <?php foreach ($juegos as $juego): ?>
+            <div class="game-item">
+                <a href="detalle_juego.php?id=<?= $juego->id ?>">
+                    <img src="../resources/<?= htmlspecialchars($juego->imagen) ?>" 
+                         alt="<?= htmlspecialchars($juego->nombre) ?>">
+                </a>
+                <h5 style="text-align:center; color:white; margin-top:10px;">
+                    <?= htmlspecialchars($juego->nombre) ?>
+                </h5>
+            </div>
+        <?php endforeach; ?>
     </div>
-
-
 </body>

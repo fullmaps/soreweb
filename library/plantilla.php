@@ -27,8 +27,9 @@ class Plantilla {
                     <li><a href="../web/website.php">Inicio</a></li>
                     <li><a href="../web/games.php">Juegos</a></li>
                     <li><a href="../games/index.php">Animes</a></li>
-                    <li><a href="../aboutme/test.php">Sobre mí</a></li>
+                    <li><a href="../web/about.php">Sobre mí</a></li>
                     <li><a href="../contact/index.php">Contacto</a></li>
+                    <li><a href="../controllers/logout.php">Cerrar sesión</a></li>                
                 </ul>
             </nav>
 

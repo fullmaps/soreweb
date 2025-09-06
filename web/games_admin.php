@@ -6,10 +6,16 @@ $errores = [];
 $exito = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre      = trim($_POST['nombre'] ?? '');
-    $descripcion = trim($_POST['descripcion'] ?? '');
-    $imagen      = $_FILES['imagen']['name'] ?? '';
+    $nombre        = trim($_POST['nombre'] ?? '');
+    $descripcion   = trim($_POST['descripcion'] ?? '');
+    $horas         = trim($_POST['horas'] ?? '');
+    $dificultad    = trim($_POST['dificultad'] ?? '');
+    $estado        = trim($_POST['estado'] ?? '');
+    $rating        = intval($_POST['rating'] ?? 0);
+    $rating_custom = trim($_POST['rating_custom'] ?? '');
+    $imagen        = $_FILES['imagen']['name'] ?? '';
 
+    // Validaciones básicas
     if ($nombre === '') $errores[] = "El nombre es obligatorio.";
     if ($descripcion === '') $errores[] = "La descripción es obligatoria.";
 
@@ -17,22 +23,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($imagen) {
         $ext = strtolower(pathinfo($imagen, PATHINFO_EXTENSION));
-        $permitidas = ['jpg','jpeg','png','gif','webp'];
-        if (!in_array($ext, $permitidas)) $errores[] = "Formato de imagen no permitido.";
-        else {
+        $permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        if (!in_array($ext, $permitidas)) {
+            $errores[] = "Formato de imagen no permitido.";
+        } else {
             $nombreArchivoFinal = 'game_' . time() . '.' . $ext;
-            $destino = __DIR__ . "/../../resources/" . $nombreArchivoFinal;
-            if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $destino)) {
-                $errores[] = "Error al guardar la imagen. Revisa permisos de carpeta.";
+
+            // Ruta absoluta a resources
+            $carpeta = realpath(__DIR__ . '/../resources');
+            if (!$carpeta) {
+                $errores[] = "No se encontró la carpeta resources.";
+            } else {
+                $destino = $carpeta . DIRECTORY_SEPARATOR . $nombreArchivoFinal;
+
+                if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $destino)) {
+                    $errores[] = "Error al guardar la imagen en $destino. Revisa permisos.";
+                }
             }
         }
     }
 
+    // Guardar en la base de datos si no hubo errores
     if (!$errores) {
         conexion::exec(
-            "INSERT INTO juegos (nombre, descripcion, imagen, creado_en) 
-            VALUES (:nombre, :descripcion, :imagen, NOW())",
-            [':nombre'=>$nombre, ':descripcion'=>$descripcion, ':imagen'=>$nombreArchivoFinal]
+            "INSERT INTO juegos (nombre, descripcion, imagen, horas, dificultad, estado, rating, rating_custom, creado_en) 
+            VALUES (:nombre, :descripcion, :imagen, :horas, :dificultad, :estado, :rating, :rating_custom, NOW())",
+            [
+                ':nombre'        => $nombre,
+                ':descripcion'   => $descripcion,
+                ':imagen'        => $nombreArchivoFinal,
+                ':horas'         => $horas,
+                ':dificultad'    => $dificultad,
+                ':estado'        => $estado,
+                ':rating'        => $rating,
+                ':rating_custom' => $rating_custom
+            ]
         );
         $exito = "Juego registrado correctamente 🎉";
     }
@@ -50,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php if ($errores): ?>
     <div style="background:#f8d7da;color:#721c24;padding:10px;margin:15px auto;width:60%;border-radius:5px;">
         <ul>
-            <?php foreach($errores as $e): ?>
+            <?php foreach ($errores as $e): ?>
                 <li><?= htmlspecialchars($e) ?></li>
             <?php endforeach; ?>
         </ul>
@@ -66,6 +92,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <label>Imagen:</label><br>
     <input type="file" name="imagen" style="margin:5px 0"><br><br>
+
+    <label>Horas jugadas:</label><br>
+    <input type="text" name="horas" style="width:100%;padding:8px;margin:5px 0"><br><br>
+
+    <label>Dificultad:</label><br>
+    <select name="dificultad" style="width:100%;padding:8px;margin:5px 0">
+        <option value="">-- Seleccionar --</option>
+        <option value="Fácil">Fácil</option>
+        <option value="Normal">Normal</option>
+        <option value="Difícil">Difícil</option>
+        <option value="Extremo">Extremo</option>
+    </select><br><br>
+
+    <label>Estado:</label><br>
+    <select name="estado" style="width:100%;padding:8px;margin:5px 0">
+        <option value="">-- Seleccionar --</option>
+        <option value="En progreso">En progreso</option>
+        <option value="Terminado">Terminado</option>
+        <option value="Abandonado">Abandonado</option>
+        <option value="Pendiente">Pendiente</option>
+    </select><br><br>
+
+    <label>Rating (1 a 5):</label><br>
+    <input type="number" name="rating" min="1" max="5" style="width:100%;padding:8px;margin:5px 0"><br><br>
+
+    <label>Rating personalizado (URL o nombre de imagen):</label><br>
+    <input type="text" name="rating_custom" style="width:100%;padding:8px;margin:5px 0" placeholder="ej: estrella.png o https://..."><br><br>
 
     <button type="submit" style="background:green;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer">
         Guardar

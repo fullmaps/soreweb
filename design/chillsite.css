@@ -54,7 +54,7 @@ main {
     bottom: -4px;
     width: 0%;
     height: 2px;
-    background-color: #00ff00; /* Rosa neon */
+    background-color: #00ff00;
     transition: width 0.3s ease;
 }
 
@@ -64,47 +64,46 @@ main {
 
 /* Contenedor con fondo */
 .containerwebsite {
-    background-image: url('../resources/key-art.gif');
+    background-image: url('../resources/susieandkris.gif');
     background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
-    background-size: contain;
-    image-rendering: pixelated;
-    height: 100%;
+    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    image-rendering: pixelated;
 }
 
-.containerwebsite p {
-    background-color: rgba(0, 0, 0, 0.7); 
+.containerwebsite a {
+    background-color: rgba(20, 0, 20, 0.6); 
     padding: 20px;
-    border: 2px solid #0ff000; 
-    box-shadow: 0 0 10px #0ff000; 
+    border: 2px solid #b366ff; 
+    box-shadow: 0 0 8px #b366ff; 
     font-size: 24px;
     text-align: center;
     max-width: 600px;
     line-height: 1.5;
     text-transform: uppercase;
-    color: #0ff000;
+    color: #e0ccff;
     font-family: 'deltarune', sans-serif;
-    text-shadow: 0 0 5px #0ff000;
+    text-shadow: 0 0 6px #b366ff;
     letter-spacing: 1px;
-    /* Efecto de parpadeo */
-    animation: flicker 3s infinite;
     transition: all 0.3s ease;
-    /* Puntero clickable */
     cursor: pointer;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 35%;
 }
 
-.containerwebsite p::selection {
-    background: #0ff000;
-    color: black;
+.containerwebsite a:hover {
+    box-shadow: 0 0 15px #cc99ff;
+    border-color: #cc99ff;
+    color: #f2e6ff;
 }
-.containerwebsite p:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
 
-}
 footer {
     background-color: #111;
     color: #fff;
@@ -129,4 +128,30 @@ footer a {
 .navigation ul li {
     display: flex;
     align-items: center;
+}
+
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in;
+    z-index: 9999;
+}
+
+/* Estilo para el video en pantalla completa */
+#transition-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10000;
+    display: none;
+    background: #000;
 }

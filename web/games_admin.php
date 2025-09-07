@@ -64,8 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../design/game_register.css">
+</head>
 
-<h2 style="color:white;text-align:center;margin-top:20px">Registrar Juego</h2>
+
+<h2 style="color:#25FF08;text-align:center;margin-top:20px">Registrar Juego</h2>
 
 <?php if ($exito): ?>
     <div style="background:#d4edda;color:#155724;padding:10px;margin:15px auto;width:60%;border-radius:5px;">
@@ -120,7 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Rating personalizado (URL o nombre de imagen):</label><br>
     <input type="text" name="rating_custom" style="width:100%;padding:8px;margin:5px 0" placeholder="ej: estrella.png o https://..."><br><br>
 
-    <button type="submit" style="background:green;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer">
+    <button type="submit" class="btn-deltarune">
         Guardar
     </button>
 </form>
+</html>

@@ -34,9 +34,12 @@ $juegos = conexion::consulta("SELECT id, nombre, descripcion, imagen FROM juegos
         <h5>Aquí encontrarás una selección de juegos emocionantes para disfrutar.</h5>
     </div>
     
-    <?php if ($rol === 'A'): ?>
-        <a class="btn btn-primary" href="games_admin.php">Registrar juego</a>
-    <?php endif; ?>
+  <?php if ($rol === 'A'): ?>
+    <div class="btn-container" style="text-align:center;">
+        <a class="btn-deltarune" href="games_admin.php">Registrar Juego</a>
+    </div>
+<?php endif; ?>
+
     
     <div class="grid">
         <?php foreach ($juegos as $juego): ?>

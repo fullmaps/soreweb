@@ -1,10 +1,17 @@
 <?php
+
+require_once '../library/motor.php';
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../web/login.php"); 
 }
+$usuarioid = $_SESSION['usuario_id'];
 
+$sql = "SELECT rol FROM usuarios WHERE id = :usuarioid";
+$resultado = conexion::consulta($sql, [':usuarioid' => $usuarioid]);
+
+$rol = $resultado[0]->rol ?? 'U';  
 
 ?>
 
@@ -16,8 +23,11 @@ if (!isset($_SESSION['usuario_id'])) {
     <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../design/stylewebsite.css">
     <title>SoreWeb</title>
+    <script src="../js/website.js" defer></script>
+
 </head>
 <body>
+    <audio id="miAudio" src="../resources/videoplayback.mp4" loop></audio>
     <nav class="navigation">
         <ul>
             <li><a href="website.php">Inicio</a></li>
@@ -25,16 +35,20 @@ if (!isset($_SESSION['usuario_id'])) {
             <li><a href="animes.php">Animes</a></li>
             <li><a href="about.php">Sobre mí</a></li>
             <li><a href="../contact/">Contacto</a></li>
+            <?php if ($rol === 'A'): ?>
+                <li><a href="users_admin.php">Administrar usuarios</a></li>
+            <?php endif; ?>
             <li><a href="../controllers/logout.php">Cerrar sesión</a></li>
+            <li><img id="mutearMusica" src="../resources/speaker.svg" alt="speak logo"></li>
         </ul>
     </nav>
-
     <main class="grandcontainer">
         <div class="containerwebsite">
-            <!-- Aquí puedes meter tu contenido -->
+            <p id="miParrafo">"Alguien por ahí te quiere. Te lo prometo."</p>
+        
         </div>
     </main>
-
+    
     <footer>
         <p>&copy; 2023 SoreWeb. Todos los derechos reservados.</p>
         <p>Desarrollado por <a href="github.com/fullmaps">rin_nightVT</a></p>

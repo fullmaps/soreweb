@@ -1,0 +1,148 @@
+/* === Panel Admin estilo Deltarune verde === */
+.panel-title {
+    text-align: center;
+    font-size: 28px;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+    margin: 20px 0;
+    text-transform: uppercase;
+    font-family: 'deltarune', sans-serif;
+}
+
+.panel-container {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 15px #00ff00;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e0ffe0;
+    font-family: 'deltarune', sans-serif;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #00ff00;
+    padding: 10px;
+    text-align: center;
+}
+
+.user-table th {
+    background-color: #001a00;
+    color: #00ff00;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: rgba(0, 40, 0, 0.6);
+}
+
+.user-table tr:hover {
+    background-color: rgba(0, 80, 0, 0.8);
+}
+
+/* Botones estilo retro */
+button {
+    font-family: 'deltarune', sans-serif;
+    font-size: 14px;
+    padding: 6px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+
+/* === Botones específicos === */
+.btn-inactivar {
+    background-color: #333300;
+    color: #fff;
+    box-shadow: 0 0 6px #cccc33;
+}
+.btn-inactivar:hover {
+    background-color: #666600;
+    box-shadow: 0 0 12px #ffff66;
+}
+
+.btn-activar {
+    background-color: #003333;
+    color: #fff;
+    box-shadow: 0 0 6px #33cccc;
+}
+.btn-activar:hover {
+    background-color: #006666;
+    box-shadow: 0 0 12px #66ffff;
+}
+
+.btn-reset {
+    background-color: #003366;
+    color: #fff;
+    box-shadow: 0 0 6px #3399ff;
+}
+.btn-reset:hover {
+    background-color: #005599;
+    box-shadow: 0 0 12px #33ccff;
+}
+
+.btn-delete {
+    background-color: #660000;
+    color: #fff;
+    box-shadow: 0 0 6px #ff3333;
+    margin-top: 10px;
+    margin-right: 210px;
+}
+.btn-delete:hover {
+    background-color: #990000;
+    box-shadow: 0 0 12px #ff6666;
+}
+
+/* === Botones de banear/desbanear === */
+.btn-ban {
+    background-color: #660000;
+    color: #fff;
+    box-shadow: 0 0 6px #ff3333;
+}
+.btn-ban:hover {
+    background-color: #990000;
+    box-shadow: 0 0 12px #ff6666;
+}
+
+.btn-desban {
+    background-color: #004400;
+    color: #fff;
+    box-shadow: 0 0 6px #33ff33;
+}
+.btn-desban:hover {
+    background-color: #008000;
+    box-shadow: 0 0 12px #66ff66;
+}
+
+/* === Mensajes del panel === */
+.panel-msg {
+    text-align: center;
+    margin: 15px auto;
+    padding: 10px 20px;
+    background: rgba(0, 40, 0, 0.8);
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: 'deltarune', sans-serif;
+    text-shadow: 0 0 8px #00ff00;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+/* Colores de filas según estado */
+.fila-activo {
+    background: rgba(0, 60, 0, 0.6);
+}
+.fila-inactivo {
+    background: rgba(60, 0, 0, 0.6);
+}

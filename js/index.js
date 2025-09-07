@@ -7,7 +7,7 @@ const sonidoRespawn = document.getElementById("sonidoRespawn");
 
 // Reproducir música de fondo al cargar la página
 window.addEventListener("load", function () {
-    audioFondo.volume = 0.5; // Ajustar volumen de la música de fondo
+    audioFondo.volume = 0.03; // Ajustar volumen de la música de fondo
     audioFondo.loop = true; // Repetir música de fondo
     audioFondo.play().catch(error => {
         console.error("Error al reproducir la música de fondo:", error);
@@ -19,7 +19,7 @@ document.getElementById('reproducirSonido').addEventListener('click', () => {
     sonidoBoton.currentTime = 0;
     sonidoBoton.play();
     setTimeout(() => {
-        window.location.href = 'website.html';
+        window.location.href = '../web/login.php';
     }, 2000);
 });
 

@@ -1,0 +1,23 @@
+.btn-deltarune {
+    display: inline-block;
+    padding: 10px 21px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    font-family: 'deltarune', sans-serif;
+    background-color: black;
+    color: white;
+    border: 4px solid white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    box-shadow: 0 0 12px white;
+    text-decoration: none;
+}
+
+.btn-deltarune:hover {
+    background-color: #1c1c1c;
+    color: #25FF08;
+    box-shadow: 0 0 18px #ffffff, 0 0 26px #25FF08;
+    transform: scale(1.1);
+}

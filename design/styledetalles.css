@@ -1,8 +1,8 @@
 
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'deltarune', sans-serif;
+        main {
+        background: linear-gradient(135deg, #1b1b2f, #2c2c54);
+        color: #fff;
+        font-family: 'deltarune', sans-serif;
         }
         .game-card {
             max-width: 800px;
@@ -20,6 +20,12 @@
         .game-content {
             padding: 20px;
         }
+
+        .game-content h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
         .rating {
             margin-top: 10px;
         }
@@ -29,7 +35,7 @@
         }
 
 
-    .btn-deltarune {
+ .btn-deltarune {
     display: inline-block;
     padding: 14px 28px;
     margin-bottom: 18px;
@@ -44,11 +50,105 @@
     text-align: center;
     box-shadow: 0 0 12px white;
     text-decoration: none;
+    border-radius: 10px;
+    margin-left: 15px;
 }
 
 .btn-deltarune:hover {
-    background-color: white;
-    color: black;
-    box-shadow: 0 0 18px #ffffff, 0 0 26px #00ffff;
+    background-color: #1c1c1c;
+    color: #FFFF00;
     transform: scale(1.1);
+}
+
+/* === Caja de comentarios estilo Deltarune === */
+.comment-box {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #111;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 12px #fff;
+}
+
+.comment-box h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #FFFF00; /* amarillo brillante estilo retro */
+    text-shadow: 0 0 5px #fff;
+}
+
+.comment-box textarea {
+    width: 100%;
+    min-height: 100px;
+    background: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'deltarune', sans-serif;
+    font-size: 16px;
+    resize: vertical;
+    box-shadow: inset 0 0 8px #fff;
+}
+
+.comment-box textarea:focus {
+    outline: none;
+    border-color: #FFFF00;
+    box-shadow: 0 0 12px #FFFF00;
+}
+
+.comment-box button {
+    display: block;
+    margin: 15px auto 0 auto;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-family: 'deltarune', sans-serif;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px white;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+
+.comment-box button:hover {
+    background-color: #1c1c1c;
+    color: #FFFF00;
+    transform: scale(1.05);
+}
+
+/* Lista de comentarios */
+.comment-list {
+    padding: 15px;
+    background: #111;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #fff;
+    width: 75%;
+    margin: 25px auto 25px auto;
+}
+
+.comment {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.comment strong {
+    color: #FFFF00;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+.comment-list h3 {
+    text-align: center;
+    color: #FFFF00;
+    text-shadow: 0 0 5px #fff;
+    margin-bottom: 15px;
 }

@@ -1,0 +1,88 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0f !important; 
+    color: #e0e0ff; 
+    font-family: 'DeltaRune', sans-serif;
+}
+
+.container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.container h2 {
+    color: #15FF00; /* Magenta retro */
+    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+    font-size: 2.5rem;
+}
+
+.container h5 {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+/* GRID estilo CRT */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6,1fr); 
+    gap: 25px;
+    padding: 40px 20px;
+    background: linear-gradient(145deg, #0a0a0f, #1a001a);
+    border: 3px solid #660066;
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px #660066, 0 0 20px #FF00FF;
+}
+
+.anime-item {
+    background-color: #111;
+    border: 2px solid #444;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s;
+    text-align: center;
+}
+
+.anime-item:hover {
+    transform: scale(1.08);
+    border: 2px solid #660066;
+    box-shadow: 0 0 12px #660066, 0 0 24px #660066;
+}
+
+.anime-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 2px solid #222;
+}
+
+.anime-item h5 {
+    margin: 12px 0;
+    color: #fff;
+    font-size: 1.1rem;
+    text-shadow: 0 0 6px #660066;
+}
+
+/* Botón estilo Deltarune alternativo */
+.btn-deltarune {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    background: black;
+    margin-bottom: 20px;
+    color: #15FF00;
+    text-shadow: 0 0 10px #660066, 0 0 20px #660066;
+    border: 3px solid #660066;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    box-shadow: 0 0 10px #660066, 0 0 20px #660066;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn-deltarune:hover {
+    transform: scale(1.05);
+}

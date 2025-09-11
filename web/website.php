@@ -35,16 +35,17 @@ $rol = $resultado[0]->rol ?? 'U';
             <li><a href="animes.php">Animes</a></li>
             <li><a href="about.php">Sobre mí</a></li>
             <li><a href="../contact/">Contacto</a></li>
+            <li><a href="perfil.php">Perfil</a></li>
             <?php if ($rol === 'A'): ?>
-                <li><a href="users_admin.php">Administrar usuarios</a></li>
+                <li><a href="users_admin.php">Administracion</a></li>
             <?php endif; ?>
-            <li><a href="../controllers/logout.php">Cerrar sesión</a></li>
+            <li><a href="../controllers/logout.php">Salir</a></li>
             <li><img id="mutearMusica" src="../resources/speaker.svg" alt="speak logo"></li>
         </ul>
     </nav>
     <main class="grandcontainer">
         <div class="containerwebsite">
-            <p id="miParrafo">"Alguien por ahí te quiere. Te lo prometo."</p>
+            <p id="miParrafo">Entrar</p>
         
         </div>
     </main>

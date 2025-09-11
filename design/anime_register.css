@@ -1,0 +1,118 @@
+/* Fondo general */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background: linear-gradient(135deg, #1b1b2f, #2c2c54) !important;
+    color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Título */
+
+h2 {
+    color: #15FF00; /* Magenta retro */
+    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 20px;
+}
+/* Mensajes de éxito y error */
+.success-msg {
+    background-color: #1e7e34;
+    color: #d4edda;
+    padding: 12px;
+    margin: 20px auto;
+    width: 70%;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 0 10px #28a745;
+}
+
+.error-msg {
+    background-color: #7e1e1e;
+    color: #f8d7da;
+    padding: 12px;
+    margin: 20px auto;
+    width: 70%;
+    border-radius: 12px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ff4d4d;
+}
+
+/* Formulario */
+form {
+    width: 60%;
+    margin: 30px auto;
+    background: #2c2c54;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #000;
+}
+
+/* Labels y campos */
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 1.1rem;
+   color: #15FF00; /* Magenta retro */
+    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background-color: #1b1b2f;
+    color: #f0f0f0;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+
+/* Botón */
+.btn-deltarune {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    background: #2c2c54;
+    margin-bottom: 25px;
+    color: #15FF00;
+    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    box-shadow: 0 0 10px #15FF00, 0 0 20px #660066;
+    text-decoration: none;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.btn-deltarune:hover {
+    transform: scale(1.01);
+}
+
+
+/* Imagen actual */
+form img {
+    display: block;
+    margin: 15px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #000;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+}

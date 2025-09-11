@@ -26,8 +26,11 @@ html, body {
     gap: 20px;
     padding: 40px 20px;
     justify-items: center;
-    background-color: #000000; /* Fondo negro SOLO en el grid */
+    background-color: #000000;
     border-radius: 10px;
+    border-color: #25FF08;
+    width: 95%;
+    margin: 0 auto 40px auto;
 }
 
 .game-item {
@@ -67,11 +70,11 @@ html, body {
     text-align: center;
     box-shadow: 0 0 12px white;
     text-decoration: none;
+    border-radius: 10px;
 }
 
 .btn-deltarune:hover {
     background-color: #1c1c1c;
-    color: #25FF08;
-    box-shadow: 0 0 18px #ffffff, 0 0 26px #25FF08;
+    color: #FFFF00;
     transform: scale(1.1);
 }

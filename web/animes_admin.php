@@ -7,35 +7,34 @@ $exito = null;
 
 // --- Verificar si estamos editando ---
 $editando = false;
-$juego = null;
+$anime = null;
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $editando = true;
     $id = intval($_GET['id']);
-    $resultado = conexion::consulta("SELECT * FROM juegos WHERE id = :id", [':id' => $id]);
-    $juego = $resultado[0] ?? null;
+    $resultado = conexion::consulta("SELECT * FROM animes WHERE id = :id", [':id' => $id]);
+    $anime = $resultado[0] ?? null;
 
-    if (!$juego) {
-        die("Juego no encontrado.");
+    if (!$anime) {
+        die("Anime no encontrado.");
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id            = intval($_POST['id'] ?? 0);
-    $nombre        = trim($_POST['nombre'] ?? '');
+    $titulo        = trim($_POST['titulo'] ?? '');
     $descripcion   = trim($_POST['descripcion'] ?? '');
-    $horas         = trim($_POST['horas'] ?? '');
-    $dificultad    = trim($_POST['dificultad'] ?? '');
+    $capitulos     = trim($_POST['capitulos'] ?? '');
     $estado        = trim($_POST['estado'] ?? '');
     $rating        = intval($_POST['rating'] ?? 0);
     $rating_custom = trim($_POST['rating_custom'] ?? '');
     $imagen        = $_FILES['imagen']['name'] ?? '';
 
     // Validaciones básicas
-    if ($nombre === '') $errores[] = "El nombre es obligatorio.";
+    if ($titulo === '') $errores[] = "El título es obligatorio.";
     if ($descripcion === '') $errores[] = "La descripción es obligatoria.";
 
-    $nombreArchivoFinal = $juego->imagen ?? null;
+    $nombreArchivoFinal = $anime->imagen ?? null;
 
     if ($imagen) {
         $ext = strtolower(pathinfo($imagen, PATHINFO_EXTENSION));
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!in_array($ext, $permitidas)) {
             $errores[] = "Formato de imagen no permitido.";
         } else {
-            $nombreArchivoFinal = 'game_' . time() . '.' . $ext;
+            $nombreArchivoFinal = 'anime_' . time() . '.' . $ext;
 
             // Ruta absoluta a resources
             $carpeta = realpath(__DIR__ . '/../resources');
@@ -65,46 +64,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($id > 0) {
             // --- UPDATE ---
             conexion::exec(
-                "UPDATE juegos SET 
-                    nombre = :nombre,
+                "UPDATE animes SET 
+                    titulo = :titulo,
                     descripcion = :descripcion,
                     imagen = :imagen,
-                    horas = :horas,
-                    dificultad = :dificultad,
+                    capitulos = :capitulos,
                     estado = :estado,
                     rating = :rating,
                     rating_custom = :rating_custom
                  WHERE id = :id",
                 [
-                    ':nombre'        => $nombre,
+                    ':titulo'        => $titulo,
                     ':descripcion'   => $descripcion,
                     ':imagen'        => $nombreArchivoFinal,
-                    ':horas'         => $horas,
-                    ':dificultad'    => $dificultad,
+                    ':capitulos'     => $capitulos,
                     ':estado'        => $estado,
                     ':rating'        => $rating,
                     ':rating_custom' => $rating_custom,
                     ':id'            => $id
                 ]
             );
-            $exito = "Juego actualizado correctamente 🎉";
+            $exito = "Anime actualizado correctamente 🎉";
         } else {
             // --- INSERT ---
             conexion::exec(
-                "INSERT INTO juegos (nombre, descripcion, imagen, horas, dificultad, estado, rating, rating_custom, creado_en) 
-                VALUES (:nombre, :descripcion, :imagen, :horas, :dificultad, :estado, :rating, :rating_custom, NOW())",
+                "INSERT INTO animes (titulo, descripcion, imagen, capitulos, estado, rating, rating_custom, creado_en) 
+                VALUES (:titulo, :descripcion, :imagen, :capitulos, :estado, :rating, :rating_custom, NOW())",
                 [
-                    ':nombre'        => $nombre,
+                    ':titulo'        => $titulo,
                     ':descripcion'   => $descripcion,
                     ':imagen'        => $nombreArchivoFinal,
-                    ':horas'         => $horas,
-                    ':dificultad'    => $dificultad,
+                    ':capitulos'     => $capitulos,
                     ':estado'        => $estado,
                     ':rating'        => $rating,
                     ':rating_custom' => $rating_custom
                 ]
             );
-            $exito = "Juego registrado correctamente 🎉";
+            $exito = "Anime registrado correctamente 🎉";
         }
     }
 }
@@ -114,11 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../design/game_register.css">
+    <link rel="stylesheet" href="../design/anime_register.css">
 </head>
-<body>
-<h2 style="color:#25FF08;text-align:center;margin-top:20px">
-    <?= $editando ? "Editar Juego" : "Registrar Juego" ?>
+
+<h2 class="titulo">
+    <?= $editando ? "Editar Anime" : "Registrar Anime" ?>
 </h2>
 
 <?php if ($exito): ?>
@@ -138,58 +134,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form method="post" enctype="multipart/form-data" style="width:60%;margin:20px auto;background:#111;color:#fff;padding:20px;border-radius:10px">
-    <input type="hidden" name="id" value="<?= $juego->id ?? 0 ?>">
+    <input type="hidden" name="id" value="<?= $anime->id ?? 0 ?>">
 
-    <label>Nombre:</label><br>
-    <input type="text" name="nombre" value="<?= htmlspecialchars($juego->nombre ?? '') ?>" style="width:100%;padding:8px;margin:5px 0"><br><br>
+    <label>Título:</label><br>
+    <input type="text" name="titulo" value="<?= htmlspecialchars($anime->titulo ?? '') ?>" style="width:100%;padding:8px;margin:5px 0"><br><br>
 
     <label>Descripción:</label><br>
-    <textarea name="descripcion" rows="4" style="width:100%;padding:8px;margin:5px 0"><?= htmlspecialchars($juego->descripcion ?? '') ?></textarea><br><br>
+    <textarea name="descripcion" rows="4" style="width:100%;padding:8px;margin:5px 0"><?= htmlspecialchars($anime->descripcion ?? '') ?></textarea><br><br>
 
-    <?php if (!empty($juego->imagen)): ?>
+    <?php if (!empty($anime->imagen)): ?>
         <p>Imagen actual:</p>
-        <img src="../resources/<?= htmlspecialchars($juego->imagen) ?>" alt="" width="150"><br><br>
+        <img src="../resources/<?= htmlspecialchars($anime->imagen) ?>" alt="" width="150"><br><br>
     <?php endif; ?>
 
     <label>Imagen (subir nueva si quieres reemplazarla):</label><br>
     <input type="file" name="imagen" style="margin:5px 0"><br><br>
 
-    <label>Horas jugadas:</label><br>
-    <input type="text" name="horas" value="<?= htmlspecialchars($juego->horas ?? '') ?>" style="width:100%;padding:8px;margin:5px 0"><br><br>
-
-    <label>Dificultad:</label><br>
-    <select name="dificultad" style="width:100%;padding:8px;margin:5px 0">
-        <option value="">-- Seleccionar --</option>
-        <?php
-        $dificultades = ["Fácil", "Normal", "Difícil", "Extremo"];
-        foreach ($dificultades as $dif) {
-            $sel = ($juego && $juego->dificultad === $dif) ? "selected" : "";
-            echo "<option value='$dif' $sel>$dif</option>";
-        }
-        ?>
-    </select><br><br>
+    <label>Capítulos:</label><br>
+    <input type="text" name="capitulos" value="<?= htmlspecialchars($anime->capitulos ?? '') ?>" style="width:100%;padding:8px;margin:5px 0"><br><br>
 
     <label>Estado:</label><br>
     <select name="estado" style="width:100%;padding:8px;margin:5px 0">
         <option value="">-- Seleccionar --</option>
         <?php
-        $estados = ["En progreso", "Terminado", "Abandonado", "Pendiente"];
+        $estados = ["Viendo", "Terminado", "Pendiente", "Abandonado"];
         foreach ($estados as $est) {
-            $sel = ($juego && $juego->estado === $est) ? "selected" : "";
+            $sel = ($anime && $anime->estado === $est) ? "selected" : "";
             echo "<option value='$est' $sel>$est</option>";
         }
         ?>
     </select><br><br>
 
     <label>Rating (1 a 5):</label><br>
-    <input type="number" name="rating" min="1" max="5" value="<?= htmlspecialchars($juego->rating ?? '') ?>" style="width:100%;padding:8px;margin:5px 0"><br><br>
+    <input type="number" name="rating" min="1" max="5" value="<?= htmlspecialchars($anime->rating ?? '') ?>" style="width:100%;padding:8px;margin:5px 0"><br><br>
 
     <label>Rating personalizado (URL o nombre de imagen):</label><br>
-    <input type="text" name="rating_custom" value="<?= htmlspecialchars($juego->rating_custom ?? '') ?>" style="width:100%;padding:8px;margin:5px 0" placeholder="ej: estrella.png o https://..."><br><br>
+    <input type="text" name="rating_custom" value="<?= htmlspecialchars($anime->rating_custom ?? '') ?>" style="width:100%;padding:8px;margin:5px 0" placeholder="ej: estrella.png o https://..."><br><br>
 
     <button type="submit" class="btn-deltarune">
         <?= $editando ? "Actualizar" : "Guardar" ?>
     </button>
 </form>
-</body>
 </html>

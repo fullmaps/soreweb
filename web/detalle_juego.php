@@ -29,6 +29,16 @@ $sql = "SELECT rol FROM usuarios WHERE id = :usuarioid";
 $resultado = conexion::consulta($sql, [':usuarioid' => $usuarioid]);
 
 $rol = $resultado[0]->rol ?? 'U';  
+
+// CARGAR COMENTARIOS DEL JUEGO
+$sql = "SELECT c.*, u.nombre
+        FROM comentarios c
+        INNER JOIN usuarios u ON c.usuario_id = u.id
+        WHERE c.contenido_id = :id AND c.tipo_contenido = 'juego'
+        ORDER BY c.creado_en DESC";
+
+$comentarios = conexion::consulta($sql, [':id' => $id]);
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -55,24 +65,49 @@ $rol = $resultado[0]->rol ?? 'U';
             
             <div class="rating">
                 <strong>Rating:</strong> 
-                <?php if ($juego->rating_custom): ?>
-                    <img src="<?= htmlspecialchars($juego->rating_custom) ?>" alt="Custom Rating">
-                <?php else: ?>
-                    <?php for ($i=0; $i<$juego->rating; $i++): ?>
-                        ⭐
-                    <?php endfor; ?>
-                <?php endif; ?>
+                    <?php if ($juego->rating_custom): ?>
+                        <?php for ($i=0; $i<$juego->rating; $i++): ?>
+                            <img src="<?= htmlspecialchars($juego->rating_custom) ?>" alt="Custom Rating" style="width:20px;height:20px;">
+                        <?php endfor; ?>
+                    <?php else: ?>
+                        <?php for ($i=0; $i<$juego->rating; $i++): ?>
+                          ⭐
+                        <?php endfor; ?>
+                    <?php endif; ?>
             </div>
         </div>
     </div>
-    <div class="text-center">
-        <a href="games.php" class="btn-deltarune">Volver al catálogo</a>
-        <?php if ($rol === 'A'): ?>
-        <a class="btn-deltarune" href="games_admin.php">Editar</a>
-        <a class="btn-deltarune" href="games_admin.php">Eliminar</a>
-        <?php endif; ?>
 
-    </div>
-      
+<div class="text-center">
+    <a href="games.php" class="btn-deltarune">Volver al catálogo</a>
+    <?php if ($rol === 'A'): ?>
+        <a class="btn-deltarune" href="games_admin.php?id=<?= $juego->id ?>">Editar</a>
+        <a class="btn-deltarune" href="../controllers/eliminar_juego.php?id=<?= $juego->id ?>" onclick="return confirm('¿Seguro que quieres eliminar este juego?')">Eliminar</a>
+    <?php endif; ?>
+</div>
+ 
+<div class="comment-box">
+    <h3>💬 Deja tu comentario</h3>
+    <form method="post" action="../controllers/guardar_comentario.php?id=<?= $juego->id ?>&tipo=juego">
+        <textarea name="comentario" placeholder="Escribe algo..." required></textarea>
+        <button type="submit">Publicar</button>
+    </form>
+</div>
+
+<div class="comment-list">
+        <h3>Comentarios</h3>
+    <?php if ($comentarios): ?>
+        <?php foreach ($comentarios as $comentario): ?>
+            <div class="comment">
+                <strong><?= htmlspecialchars($comentario->nombre) ?>:</strong>
+                <p><?= nl2br(htmlspecialchars($comentario->comentario)) ?></p>
+                <small style="color:gray;">Publicado: <?= htmlspecialchars($comentario->creado_en) ?></small>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p style="text-align:center;color:white;">No hay comentarios aún. ¡Sé el primero en comentar!</p>
+    <?php endif; ?>
+</div>
         
 </body>
+</html>

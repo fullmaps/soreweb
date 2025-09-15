@@ -3,8 +3,18 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #0a0a0f !important; 
-    color: #e0e0ff; 
     font-family: 'DeltaRune', sans-serif;
+}
+
+main {
+    background: url('../resources/deltarune_anime_wallpaper.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 20px 0;
+    box-sizing: border-box;
+    backdrop-filter: brightness(0.6);
 }
 
 .container {
@@ -14,12 +24,12 @@ html, body {
 
 .container h2 {
     color: #15FF00; /* Magenta retro */
-    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+    text-shadow: 0 0 10px #0a0a0f, 0 0 20px #660066;
     font-size: 2.5rem;
 }
 
 .container h5 {
-    color: #bbb;
+    color: #fff;
     margin-bottom: 30px;
 }
 
@@ -30,9 +40,11 @@ html, body {
     gap: 25px;
     padding: 40px 20px;
     background: linear-gradient(145deg, #0a0a0f, #1a001a);
-    border: 3px solid #660066;
+    border: 3px solid #15FF00;
     border-radius: 15px;
-    box-shadow: inset 0 0 15px #660066, 0 0 20px #FF00FF;
+    box-shadow: inset 0 0 15px #15FF00, 0 0 20px #0da200;
+    width: 90%;
+    margin: 0 auto 40px auto;
 }
 
 .anime-item {
@@ -42,12 +54,12 @@ html, body {
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s;
     text-align: center;
+    width: 100%;
 }
 
 .anime-item:hover {
-    transform: scale(1.08);
-    border: 2px solid #660066;
-    box-shadow: 0 0 12px #660066, 0 0 24px #660066;
+    transform: scale(1.04);
+
 }
 
 .anime-item img {
@@ -71,14 +83,13 @@ html, body {
     font-size: 18px;
     background: black;
     margin-bottom: 20px;
-    color: #15FF00;
-    text-shadow: 0 0 10px #660066, 0 0 20px #660066;
-    border: 3px solid #660066;
+    color: #fff;
+    border: 3px solid #15FF00;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     text-align: center;
-    box-shadow: 0 0 10px #660066, 0 0 20px #660066;
+    box-shadow: 0 0 10px #0da200, 0 0 20px #0da200;
     text-decoration: none;
     border-radius: 8px;
 }

@@ -1,4 +1,5 @@
 <?php
+require_once "config.php"; 
 
 class Plantilla {
     static $instancia = null;
@@ -11,6 +12,23 @@ class Plantilla {
     }
 
     public function __construct() {
+        // 🔹 Iniciar sesión
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // 🔹 Obtener ID de usuario
+        $usuarioId = $_SESSION['usuario_id'] ?? null;
+        $rol = null;
+
+        // 🔹 Si hay usuario, obtener rol desde BD
+        if ($usuarioId) {
+            $resultado = conexion::consulta(
+                "SELECT rol FROM usuarios WHERE id = :id",
+                [":id" => $usuarioId]
+            );
+            $rol = $resultado[0]->rol ?? 'U';
+        }
         ?>
         <!DOCTYPE html>
         <html lang="es">
@@ -29,28 +47,36 @@ class Plantilla {
                     <li><a href="../web/animes.php">Animes</a></li>
                     <li><a href="../web/about.php">Sobre mí</a></li>
                     <li><a href="../contact/index.php">Contacto</a></li>
-                    <li><a href="../web/perfil.php">Perfil</a></li>
-                    <li><a href="../controllers/logout.php">Cerrar sesión</a></li>     
-                               
+
+                    <?php if ($usuarioId): ?>
+                        <!-- Perfil dinámico -->
+                        <li><a href="../web/perfil.php?id=<?php echo $usuarioId; ?>">Perfil</a></li>
+                        <li><a href="../controllers/logout.php">Salir</a></li>
+                    <?php else: ?>
+                        <li><a href="../web/login.php">Iniciar sesión</a></li>
+                    <?php endif; ?>
+
+                    <!-- Solo administradores -->
+                    <?php if ($rol === 'A'): ?>
+                        <li><a href="../web/users_admin.php">Administración</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
 
-        <main>
-
+            <main>
         <?php
     }
 
     public function __destruct() {
     ?>
-    </main>
-    </body>
+            </main>
+        </body>
 
-    <footer>
-        <p>&copy; 2023 SoreWeb. Todos los derechos reservados.</p>
-        <p>Desarrollado por <a href="https://github.com/fullmaps" target="_blank">rin_nightVT</a></p>
-    </footer>
-    </html>
+        <footer>
+            <p>&copy; 2023 SoreWeb. Todos los derechos reservados.</p>
+            <p>Desarrollado por <a href="https://github.com/fullmaps" target="_blank">rin_nightVT</a></p>
+        </footer>
+        </html>
     <?php
-}
-
+    }
 }

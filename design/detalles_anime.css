@@ -1,6 +1,12 @@
 
         main {
-        background: linear-gradient(135deg, #1b1b2f, #2c2c54);
+        background: url('../resources/kris-tree.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 20px 0;
+        box-sizing: border-box;
+        backdrop-filter: brightness(0.6);
         color: #fff;
         font-family: 'deltarune', sans-serif;
         }

@@ -2,7 +2,6 @@
 require_once '../library/motor.php';
 Plantilla::aplicar();
 
-session_start();
 
 // VERIFICAR SESIÓN
 if (!isset($_GET['id'])) {
@@ -47,11 +46,12 @@ $comentarios = conexion::consulta($sql, [':id' => $id]);
     <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../design/styledetalles.css">
+    <script src="../js/detalles_juego.js" defer></script>
 </head>
 <body>
     <div class="game-card">
         <?php if ($juego->imagen): ?>
-            <img src="../resources/<?= htmlspecialchars($juego->imagen) ?>" alt="<?= htmlspecialchars($juego->nombre) ?>">
+            <img id="image-clickable" src="../resources/<?= htmlspecialchars($juego->imagen) ?>" alt="<?= htmlspecialchars($juego->nombre) ?>">
         <?php endif; ?>
 
         <div class="game-content">

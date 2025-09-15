@@ -2,7 +2,6 @@
 require_once '../library/motor.php';
 Plantilla::aplicar(); 
 
-session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../web/login.php"); 
@@ -27,7 +26,7 @@ $animes = conexion::consulta("SELECT id, titulo, descripcion, imagen FROM animes
 
 <body>
     <div class="container">
-        <h2>🌙 Bienvenido a la sección de Animes</h2>
+        <h2>Bienvenido a la sección de Animes</h2>
         <h5>Aquí descubrirás una colección de historias épicas y mundos mágicos.</h5>
     </div>
     

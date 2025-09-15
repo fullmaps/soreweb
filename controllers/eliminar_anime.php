@@ -42,7 +42,6 @@ if (!empty($anime->imagen) && file_exists(__DIR__ . '/../resources/' . $anime->i
     unlink(__DIR__ . '/../resources/' . $anime->imagen);
 }
 
-// Redirigir con mensaje
-header("Location: animes_admin.php?msg=" . urlencode("Anime eliminado correctamente ✅"));
+header("Location: ../web/animes.php");
 exit;
 ?>

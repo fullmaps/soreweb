@@ -6,7 +6,14 @@ html, body {
 }
 
 main {
-    background: linear-gradient(135deg, #1b1b2f, #2c2c54) !important;
+    background: url('../resources/nichijou.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
     color: #f0f0f0;
     font-family: 'Arial', sans-serif;
 }
@@ -15,7 +22,7 @@ main {
 
 h2 {
     color: #15FF00; /* Magenta retro */
-    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+    text-shadow: 0 0 10px #000, 0 0 20px #1e7e34;
     font-size: 2.5rem;
     text-align: center;
     margin-top: 20px;
@@ -60,7 +67,7 @@ label {
     margin-top: 15px;
     font-size: 1.1rem;
    color: #15FF00; /* Magenta retro */
-    text-shadow: 0 0 10px #FF00FF, 0 0 20px #660066;
+    text-shadow: 0 0 10px #000, 0 0 20px #1e7e34;
 }
 
 input[type="text"],
@@ -115,4 +122,24 @@ form img {
 /* Textarea */
 textarea {
     resize: vertical;
+}
+
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+}
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 400px) {
+    .btn-deltarune {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
 }

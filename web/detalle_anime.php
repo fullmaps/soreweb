@@ -2,7 +2,6 @@
 require_once '../library/motor.php';
 Plantilla::aplicar();
 
-session_start();
 
 // VERIFICAR SESIÓN Y ID DEL ANIME
 if (!isset($_GET['id'])) {
@@ -29,6 +28,15 @@ $sql = "SELECT rol FROM usuarios WHERE id = :usuarioid";
 $resultado = conexion::consulta($sql, [':usuarioid' => $usuarioid]);
 
 $rol = $resultado[0]->rol ?? 'U';  
+
+// CARGAR COMENTARIOS DEL ANIME
+$sql = "SELECT c.*, u.nombre
+        FROM comentarios c
+        INNER JOIN usuarios u ON c.usuario_id = u.id
+        WHERE c.contenido_id = :id AND c.tipo_contenido = 'anime'
+        ORDER BY c.creado_en DESC";
+$comentarios = conexion::consulta($sql, [':id' => $id]);
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -36,12 +44,13 @@ $rol = $resultado[0]->rol ?? 'U';
     <title><?= htmlspecialchars($anime->titulo) ?> - SoreWeb</title>
     <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../design/styledetalles.css">
+    <link rel="stylesheet" href="../design/detalles_anime.css">
+    <script src="../js/detalles_anime.js" defer></script>
 </head>
 <body>
     <div class="game-card">
         <?php if ($anime->imagen): ?>
-            <img src="../resources/<?= htmlspecialchars($anime->imagen) ?>" alt="<?= htmlspecialchars($anime->titulo) ?>">
+            <img id="image-clickable" src="../resources/<?= htmlspecialchars($anime->imagen) ?>" alt="<?= htmlspecialchars($anime->titulo) ?>">
         <?php endif; ?>
 
         <div class="game-content">
@@ -74,4 +83,27 @@ $rol = $resultado[0]->rol ?? 'U';
             <a class="btn-deltarune" href="../controllers/eliminar_anime.php?id=<?= $anime->id ?>" onclick="return confirm('¿Seguro que quieres eliminar este anime?')">Eliminar</a>
         <?php endif; ?>
     </div>
+
+    <div class="comment-box">
+    <h3>💬 Deja tu comentario</h3>
+    <form method="post" action="../controllers/guardar_comentario.php?id=<?= $anime->id ?>&tipo=anime">
+        <textarea name="comentario" placeholder="Escribe algo..." required></textarea>
+        <button type="submit">Publicar</button>
+    </form>
+</div>
+
+<div class="comment-list">
+        <h3>Comentarios</h3>
+    <?php if ($comentarios): ?>
+        <?php foreach ($comentarios as $comentario): ?>
+            <div class="comment">
+                <strong><?= htmlspecialchars($comentario->nombre) ?>:</strong>
+                <p><?= nl2br(htmlspecialchars($comentario->comentario)) ?></p>
+                <small style="color:gray;">Publicado: <?= htmlspecialchars($comentario->creado_en) ?></small>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p style="text-align:center;color:white;">No hay comentarios aún. ¡Sé el primero en comentar!</p>
+    <?php endif; ?>
+</div>
 </body>

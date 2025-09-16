@@ -1,12 +1,5 @@
 /* === Perfil estilo Deltarune Verde Sobrio === */
 
-main {
-    background: linear-gradient(135deg, #1b1b2f, #2c2c54);
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-
-}
 
 .perfil-container {
     margin: 40px auto;
@@ -99,3 +92,11 @@ main {
     display: block;
     margin: 10px auto;
 }
+
+.perfil-avatar:hover {
+    box-shadow: 0 0 12px #00ff80;
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+

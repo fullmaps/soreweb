@@ -1,11 +1,12 @@
-/* === Personalizar Perfil - Estilo Deltarune Verde === */
+/* === Personalizar Perfil - Estilo Base === */
 
-main{
+main {
     background: linear-gradient(135deg, #1b1b2f, #2c2c54);
     background-size: cover;
     background-position: center;
     padding: 20px;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +14,7 @@ body {
     color: #e0ffe0;
 }
 
+/* Contenedor principal del perfil */
 .perfil-container {
     margin: 40px auto;
     background: #111;
@@ -22,8 +24,11 @@ body {
     border-radius: 12px;
     width: 480px;
     text-align: center;
+    background-size: cover;
+    background-position: center;
 }
 
+/* Título */
 .perfil-titulo {
     color: #80ff80;
     text-shadow: 0 0 6px #2b912b;
@@ -32,6 +37,7 @@ body {
     font-size: 22px;
 }
 
+/* Tarjeta con formulario */
 .perfil-card {
     background: #1a1f1a;
     border: 1px solid #3d5c3d;
@@ -40,6 +46,7 @@ body {
     text-align: left;
 }
 
+/* Labels */
 .perfil-card label {
     display: block;
     margin: 12px 0 5px;
@@ -47,6 +54,7 @@ body {
     color: #b6ffb6;
 }
 
+/* Inputs, textarea y select */
 .perfil-card input[type="text"],
 .perfil-card textarea,
 .perfil-card select {
@@ -65,6 +73,7 @@ body {
     color: #e0ffe0;
 }
 
+/* Imagen previa */
 .perfil-card img {
     display: block;
     margin: 10px 0;
@@ -73,6 +82,7 @@ body {
     max-width: 120px;
 }
 
+/* Botón estilo Deltarune */
 .btn-deltarune {
     display: inline-block;
     padding: 12px 18px;
@@ -92,4 +102,20 @@ body {
 .btn-deltarune:hover {
     background: #2bb92b;
     box-shadow: 0 0 12px #80ff80;
+}
+
+/* === Estilos dinámicos de carta === */
+.perfil-container.verde {
+    border: 2px solid #1f7a1f;
+    box-shadow: 0 0 12px rgba(50, 200, 50, 0.6);
+}
+
+.perfil-container.morado {
+    border: 2px solid #7a1f7a;
+    box-shadow: 0 0 12px rgba(200, 50, 200, 0.6);
+}
+
+.perfil-container.oscuro {
+    border: 2px solid #444;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }

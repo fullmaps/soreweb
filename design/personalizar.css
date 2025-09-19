@@ -22,7 +22,7 @@ body {
     box-shadow: 0 0 12px rgba(50, 200, 50, 0.6);
     padding: 30px;
     border-radius: 12px;
-    width: 480px;
+    width: 870px;
     text-align: center;
     background-size: cover;
     background-position: center;
@@ -84,13 +84,12 @@ body {
 
 /* Botón estilo Deltarune */
 .btn-deltarune {
-    display: inline-block;
+    display: flex;
     padding: 12px 18px;
     background: #1f7a1f;
     color: #f0fff0;
     text-decoration: none;
     border-radius: 8px;
-    box-shadow: 0 0 8px #2b912b;
     transition: 0.2s ease-in-out;
     font-size: 14px;
     margin-top: 15px;
@@ -100,7 +99,6 @@ body {
 }
 
 .btn-deltarune:hover {
-    background: #2bb92b;
     box-shadow: 0 0 12px #80ff80;
 }
 
@@ -119,3 +117,8 @@ body {
     border: 2px solid #444;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }
+
+.perfil-container form input{
+    width: 100%;
+}
+

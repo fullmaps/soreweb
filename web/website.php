@@ -34,7 +34,7 @@ $rol = $resultado[0]->rol ?? 'U';
             <li><a href="games.php">Juegos</a></li>
             <li><a href="animes.php">Animes</a></li>
             <li><a href="about.php">Sobre mí</a></li>
-            <li><a href="../contact/">Contacto</a></li>
+            <li><a href="contactame.php">Contacto</a></li>
              <?php if ($usuarioid): ?>
                         <li><a href="../web/perfil.php?id=<?=$usuarioid?>">Perfil</a></li>
                         <li><a href="../controllers/logout.php">Salir</a></li>

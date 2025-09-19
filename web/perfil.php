@@ -34,9 +34,10 @@ $usuario = $resultado[0];
 ?>
 
 <link rel="stylesheet" href="../design/perfil.css">
+<script src="../js/detalles_anime.js" defer></script>
 <style>
 main {
-    background-image: url('<?php echo !empty($usuario->background) ? $usuario->background : "../resources/gonermaker.png"; ?>') !important;
+    background-image: url('<?php echo !empty($usuario->background) ? $usuario->background : "../resources/malditagatasore.png"; ?>') !important;
     background-size: cover !important;
     background-position: center !important;
 }
@@ -46,21 +47,32 @@ main {
 
 <section class="perfil-container" 
          style="background-color: <?php echo $usuario->carta ?? '#111111'; ?>;
-                color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;">
+                color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+                border: 2px solid <?php echo $usuario->color_letra ?? '#e0ffe0';?>;">
     <h1 class="perfil-titulo"><?php echo htmlspecialchars($usuario->nombre); ?></h1>
 
     <div class="perfil-card" 
-         style="background-color: <?php echo $usuario->color_caja ?? '#1a1f1a'; ?>;">
-        <img src="<?php echo $usuario->foto ?: '../resources/gonermaker.png'; ?>" 
-             alt="Foto de perfil" class="perfil-avatar">
+         style="background-color: <?php echo $usuario->color_caja ?? '#1a1f1a'?> ;
+        color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+        border: 2px solid <?php echo $usuario->color_letra ?? '#e0ffe0';?>;">
 
-        <p><strong>Correo:</strong> <?php echo htmlspecialchars($usuario->correo); ?></p>
-        <p><strong>Rol:</strong> <?php echo ($usuario->rol === 'A') ? "Administrador" : "Usuario"; ?></p>
-        <p><strong>Estado:</strong> <?php echo $usuario->activo ? "Activo " : "Inactivo "; ?></p>
-        <p><strong>Miembro desde:</strong> <?php echo $usuario->fecha_creacion; ?></p>
+        <img id="image-clickable"src="<?php echo $usuario->foto ?: '../resources/gonermaker.png'; ?>" 
+             alt="Foto de perfil" class="perfil-avatar"
+             style="border: 2px solid <?php echo $usuario->color_letra ?? '#e0ffe0';?>;"
+             >
+
+        <p style="color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+        "><strong>Correo:</strong> <?php echo htmlspecialchars($usuario->correo); ?></p>
+        <p style="color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+        "><strong>Rol:</strong> <?php echo ($usuario->rol === 'A') ? "Administrador" : "Usuario"; ?></p>
+        <p style="color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+        "><strong>Estado:</strong> <?php echo $usuario->activo ? "Activo " : "Inactivo "; ?></p>
+        <p style="color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+        "><strong>Miembro desde:</strong> <?php echo $usuario->fecha_creacion; ?></p>
 
         <?php if (!empty($usuario->descripcion)): ?>
-            <p><strong>Acerca de mí:</strong> <?php echo htmlspecialchars($usuario->descripcion); ?></p>
+            <p style="color: <?php echo $usuario->color_letra ?? '#e0ffe0'; ?>;
+        "><strong>Acerca de mí:</strong> <?php echo htmlspecialchars($usuario->descripcion); ?></p>
         <?php endif; ?>
     </div>
 

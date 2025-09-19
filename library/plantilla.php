@@ -46,7 +46,7 @@ class Plantilla {
                     <li><a href="../web/games.php">Juegos</a></li>
                     <li><a href="../web/animes.php">Animes</a></li>
                     <li><a href="../web/about.php">Sobre mí</a></li>
-                    <li><a href="../contact/index.php">Contacto</a></li>
+                    <li><a href="../web/contactame.php">Contacto</a></li>
 
                     <?php if ($usuarioId): ?>
                         <!-- Perfil dinámico -->
